@@ -4,12 +4,17 @@ import hu.pte.mik.prog4.model.Person;
 import hu.pte.mik.prog4.service.IdProvider;
 import hu.pte.mik.prog4.service.PersonService;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class PersonPaymentServlet extends HttpServlet {
 
@@ -18,7 +23,25 @@ public class PersonPaymentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.createResponse(resp);
+//        String name = null;
+//        Cookie[] cookies = req.getCookies();
+//        if (cookies != null) {
+//            for (int i = 0; i < cookies.length; i++) {
+//                if (cookies[i].getName().equals("name")) {
+//                    name = URLDecoder.decode(cookies[i].getValue());
+//                    break;
+//                }
+//            }
+//        }
+        String name = Optional.ofNullable(req.getCookies())
+                .map(Stream::of)
+                .orElse(Stream.empty())
+                .filter(cookie -> "name".equals(cookie.getName()))
+                .findFirst()
+                .map(cookie -> URLDecoder.decode(cookie.getValue()))
+                .orElse(null);
+
+        this.createResponse(resp, name);
     }
 
     @Override
@@ -29,16 +52,22 @@ public class PersonPaymentServlet extends HttpServlet {
 
         Person person = new Person(this.idProvider.nextId(), name, address, idNumber);
 
+        Cookie cookie = new Cookie("name", URLEncoder.encode(name, "UTF-8"));
+        resp.addCookie(cookie);
+
         this.personService.pay(person);
-        this.createResponse(resp);
+        this.createResponse(resp, name);
 
 
 
     }
 
-    private void createResponse(HttpServletResponse resp) throws IOException {
+    private void createResponse(HttpServletResponse resp, String name) throws IOException {
         PrintWriter writer = resp.getWriter();
         writer.println("<html><head><meta charset=\"utf-8\"></head><body>");
+        if(name != null && !name.isEmpty()) {
+            writer.println("<h1>Hello " + name + "!</h1>");
+        }
         writer.println("<form method=\"post\">");
         writer.println("Name: <input type=\"text\" name=\"name\"/>");
         writer.println("Address: <input type=\"text\" name=\"address\"/>");
