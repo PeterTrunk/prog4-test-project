@@ -14,7 +14,7 @@ public class PersonRepository implements ClientRepository<Person>{
 
     @Override
     public void save(Person client) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.dataSource.save(client);
     }
 
     @Override

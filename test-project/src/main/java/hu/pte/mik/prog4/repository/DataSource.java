@@ -64,4 +64,8 @@ public class DataSource {
                 .map(client -> (Company)client)
                 .collect(Collectors.toList());
     }
+
+    public void save(Client client) {
+        this.dataList.add(client);
+    }
 }

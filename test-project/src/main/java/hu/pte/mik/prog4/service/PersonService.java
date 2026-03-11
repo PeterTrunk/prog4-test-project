@@ -28,4 +28,9 @@ public class PersonService implements ClientService<Person> {
     public List<Person> listAll() {
         return this.personRepository.listAll();
     }
+
+    @Override
+    public void save(Person client) {
+        this.personRepository.save(client);
+    }
 }

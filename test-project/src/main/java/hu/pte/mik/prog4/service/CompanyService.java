@@ -27,4 +27,9 @@ public class CompanyService implements ClientService<Company> {
     public List<Company> listAll() {
         return this.companyRepository.listAll();
     }
+
+    @Override
+    public void save(Company client) {
+
+    }
 }

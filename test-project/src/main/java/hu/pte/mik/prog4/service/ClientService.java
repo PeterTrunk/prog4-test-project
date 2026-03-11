@@ -12,4 +12,6 @@ public interface ClientService<T extends Client> {
     public void receiveService(T client);
 
     public List<T> listAll();
+
+    public void save(T client);
 }
