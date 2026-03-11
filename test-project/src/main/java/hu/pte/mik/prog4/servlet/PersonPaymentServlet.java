@@ -57,9 +57,6 @@ public class PersonPaymentServlet extends HttpServlet {
 
         this.personService.pay(person);
         this.createResponse(resp, name);
-
-
-
     }
 
     private void createResponse(HttpServletResponse resp, String name) throws IOException {
@@ -74,6 +71,18 @@ public class PersonPaymentServlet extends HttpServlet {
         writer.println("ID number: <input type=\"text\" name=\"idNumber\"/>");
         writer.println("<input type=\"submit\"/>");
         writer.println("</form>");
+        writer.println("<table border=\"1\">");
+        writer.println("<tbody>");
+
+        this.personService.listAll().forEach(person -> {
+            writer.println("<tr>");
+            writer.println("<td>" + person.getId() + "</td>");
+            writer.println("<td>" + person.getName() + "</td>");
+            writer.println("<td>" + person.getAddress() + "</td>");
+            writer.println("</tr>");
+        });
+
+        writer.println("</tbody");
         writer.println("</body>");
         writer.println("</html>");
     }
