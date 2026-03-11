@@ -8,9 +8,19 @@
         <servlet-name>HelloWorldServlet</servlet-name>
         <servlet-class>hu.pte.mik.prog4.servlet.HelloWorldServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>PersonPaymentServlet</servlet-name>
+        <servlet-class>hu.pte.mik.prog4.servlet.PersonPaymentServlet</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>HelloWorldServlet</servlet-name>
         <url-pattern>/helloWorld</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>PersonPaymentServlet</servlet-name>
+        <url-pattern>/personPayment</url-pattern>
     </servlet-mapping>
 </web-app>

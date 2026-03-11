@@ -2,9 +2,9 @@ package hu.pte.mik.prog4.service;
 
 
 import hu.pte.mik.prog4.model.Person;
+import org.apache.log4j.Logger;
 
 import java.util.Objects;
-import java.util.logging.Logger;
 
 public class PersonService implements ClientService<Person> {
 
