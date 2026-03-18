@@ -18,6 +18,11 @@
         <servlet-name>CompanyPaymentServlet</servlet-name>
         <servlet-class>hu.pte.mik.prog4.servlet.CompanyPaymentServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>ClientListServlet</servlet-name>
+        <servlet-class>hu.pte.mik.prog4.servlet.ClientListServlet</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>HelloWorldServlet</servlet-name>
@@ -32,5 +37,10 @@
     <servlet-mapping>
         <servlet-name>CompanyPaymentServlet</servlet-name>
         <url-pattern>/companyPayment</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ClientListServlet</servlet-name>
+        <url-pattern>/clientList</url-pattern>
     </servlet-mapping>
 </web-app>
