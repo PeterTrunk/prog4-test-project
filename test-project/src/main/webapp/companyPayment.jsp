@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,14 +6,19 @@
     <title>Test project</title>
 </head>
 <body>
-    <%
-        if(request.getAttribute("name") != null
-            && !request.getAttribute("name").equals("") ) {
-    %>
-    <h1>Hello ${name}</h1>
-    <%
-        }
-    %>
+<%--    <%--%>
+<%--        if(request.getAttribute("name") != null--%>
+<%--            && !request.getAttribute("name").equals("") ) {--%>
+<%--    %>--%>
+<%--    <h1>Hello ${name}</h1>--%>
+<%--    <%--%>
+<%--        }--%>
+<%--    %>--%>
+    <c:if test="${name != null}">
+        <h1>
+            <c:out value="Hello ${name}"/>
+        </h1>
+    </c:if>
     <form method="post">
         <table>
             <tr>
