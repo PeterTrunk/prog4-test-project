@@ -55,9 +55,10 @@ public class PersonPaymentServlet extends HttpServlet {
         Cookie cookie = new Cookie("name", URLEncoder.encode(name, "UTF-8"));
         resp.addCookie(cookie);
 
-        this.personService.save(person);
+        //this.personService.save(person);
         this.personService.pay(person);
-        this.createResponse(resp, name);
+        //this.createResponse(resp, name);
+        resp.sendRedirect("clientList");
     }
 
     private void createResponse(HttpServletResponse resp, String name) throws IOException {

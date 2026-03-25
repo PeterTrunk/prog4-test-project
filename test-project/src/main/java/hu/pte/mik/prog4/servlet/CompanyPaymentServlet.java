@@ -35,7 +35,6 @@ public class CompanyPaymentServlet extends HttpServlet {
                 .orElse(null);
 
         req.setAttribute("name", name);
-
         req.getRequestDispatcher("/companyPayment.jsp").forward(req, resp);
     }
 
@@ -55,7 +54,8 @@ public class CompanyPaymentServlet extends HttpServlet {
         resp.addCookie(cookie);
 
         req.setAttribute("name", name);
-        req.getRequestDispatcher("/companyPayment.jsp").forward(req, resp);
+        //req.getRequestDispatcher("/companyPayment.jsp").forward(req, resp);
+        resp.sendRedirect("clientList");
     }
 }
 
